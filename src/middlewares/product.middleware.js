@@ -8,6 +8,4 @@ const productPostValidator = (req, res, next) => {
   }
 };
 
-module.exports = {
-  productPostValidator,
-};
+export default productPostValidator

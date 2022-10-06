@@ -1,6 +1,6 @@
-import cartModel from "../../models/carritos.model.js"
+import ContainerArchivo from "../../models/modelArchivo.js"
 
-class CarritosDaoArchivo extends cartModel {
+class CarritosDaoArchivo extends ContainerArchivo {
 
     constructor() {
         super('carritos.model.json')

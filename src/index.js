@@ -1,6 +1,7 @@
 // Configuracion inicial en express de node.js
-const express = require("express");
-const { apiRouter } = require("./routes/api.route");
+import express from "express"
+import apiRouter from "./routes/api.route.js";
+
 const app = express();
 const PORT = process.env.PORT || 8080;
 app.use(express.json());

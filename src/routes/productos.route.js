@@ -1,33 +1,30 @@
-const { Router } = require("express");
+import { Router } from "express";
 const productsRouter = Router();
 
-const { productPostValidator } = require("../middlewares/product.middleware");
-const { authValidator } = require("../middlewares/auth.middleware");
-const { productsModel } = require("../models/productos.model");
+import productPostValidator from "../middlewares/product.middleware.js";
+import authValidator from "../middlewares/auth.middleware.js";
 
-const myProductsModel = new productsModel();
+import { productsDao as productsApi } from "../daos/main.js";
 
 // Me permite listar todos los productos disponibles o un producto por su id (disponible para usuarios y administradores)
 productsRouter.get("/:id?", async (req, res) => {
   const { id } = req.params;
-
   try {
-    if (id > 0) {
-      // Muestra el producto pedido por su id
-      const productFinded = await myProductsModel.getProductById(Number(id));
-      productFinded
-        ? res.send(productFinded)
-        : res.status(404).send("No se ha encontrado el producto");
+    if (id) {
+      if (id > 0) {
+        // Muestra el producto pedido por su id
+        const wasFinded = await productsApi.read(Number(id)); 
+        res.json(wasFinded)
+      } else {
+        res.status(400).send(`Error al listar el producto con id ${id}`);
+      }
     } else {
       // Devuelve todos los productos disponibles
-      const productList = await myProductsModel.getProducts();
-      res.send(productList);
+      const products = await productsApi.readAll();
+      res.send(products);
     }
-  } catch {
-    res.status(400).send({
-      error: -1,
-      descripcion: "Bad Request",
-    });
+  } catch (err) {
+   console.log(err)
   }
 });
 // Para incorporar productos al listado (disponible para administradores)
@@ -39,7 +36,7 @@ productsRouter.post(
     const newProduct = req.body;
 
     try {
-      const result = await myProductsModel.createProduct(newProduct);
+      const result = await productsApi.save(newProduct);
       console.log(result);
       res.send(result);
     } catch (error) {
@@ -50,38 +47,19 @@ productsRouter.post(
 );
 // Actualiza un producto por su id (disponible para administradores)
 productsRouter.put("/:id", authValidator, async (req, res) => {
-  try {
-    const productId = Number(req.params.id);
-    const newData = req.body;
-
-    const updateProduct = await myProductsModel.updateProduct(
-      productId,
-      newData
-    );
-    const productList = await myProductsModel.getProducts();
-    let index = await myProductsModel.getProductById(productId);
-
-    if (index.id <= productList.length) {
-      res.send(index);
-    } else {
-      res.status(400).send({
-        error: -1,
-        descripcion: "Producto no encontrado",
-      });
-    }
-  } catch {
-    res.status(400).send("Bad Request");
-  }
+  const id = req.params.id;
+  const newData = req.body
+    res.send(await productsApi.update(newData,id));
 });
 // Borra un producto por su id (disponible para administradores)
 productsRouter.delete("/:id", authValidator, async (req, res) => {
   // Elimina un producto segun su id
   const id = Number(req.params.id);
-
+  
   try {
-    const productsList = await myProductsModel.getProducts();
+    const productsList = await productsApi.readAll();
     if (productsList.length >= id) {
-      await myProductsModel.deleteById(id);
+      await productsApi.delete(id);
       res.send("Producto Eliminado");
     } else {
       res.send("No se encuentra este producto para eliminar");
@@ -91,6 +69,4 @@ productsRouter.delete("/:id", authValidator, async (req, res) => {
   }
 });
 
-module.exports = {
-  productsRouter,
-};
+export default productsRouter;

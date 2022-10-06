@@ -1,9 +1,9 @@
-import productsModel from "../../models/productos.model"
+import ContainerArchivo from "../../models/productos.model"
 
-class ProductosDaoArchivo extends productsModel {
+class ProductosDaoArchivo extends ContainerArchivo {
 
     constructor() {
-        super('productos.model.json')
+        super('productos.json')
     }
 }
 

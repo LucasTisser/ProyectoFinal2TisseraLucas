@@ -1,6 +1,6 @@
-const { Router } = require("express");
-const { productsRouter } = require("./productos.route");
-const { cartsRouter } = require("./carritos.route");
+import { Router } from "express"
+import productsRouter  from "./productos.route.js"
+import cartsRouter  from "./carritos.route.js";
 const apiRouter = Router();
 
 // Rutas alojadas en routers
@@ -8,6 +8,4 @@ apiRouter.use("/productos", productsRouter);
 apiRouter.use("/carrito", cartsRouter);
 
 // apiRouter
-module.exports = {
-  apiRouter,
-};
+export default apiRouter

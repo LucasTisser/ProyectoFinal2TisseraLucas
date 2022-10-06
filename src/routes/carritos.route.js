@@ -1,9 +1,6 @@
-const { Router } = require("express");
-const { cartModel } = require("../models/carritos.model");
 const cartsRouter = Router();
-const myCartsModel = new cartModel();
-const { productsModel } = require("../models/productos.model");
-const myProductsModel = new productsModel();
+import { Router } from "express"
+import { cartsDao as cartsApi} from "../daos/main.js"
 
 // Crea un carrito y devuelve su id
 cartsRouter.post("/", async (req, res) => {
@@ -90,6 +87,4 @@ cartsRouter.delete("/:id/productos/:id_prod", async (req, res) => {
   }
 });
 
-module.exports = {
-  cartsRouter,
-};
+export default cartsRouter

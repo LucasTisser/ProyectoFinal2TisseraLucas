@@ -3,6 +3,7 @@ let cartsDao;
 
 switch (process.env.PERS) {
   case "json":
+    console.log("Metodo JSON")
     const { default: ProductosDaoArchivo } = await import(
       "./productos/ProductosDaoArchivo.js"
     );
@@ -58,6 +59,7 @@ switch (process.env.PERS) {
     cartsDao = new CarritosDaoSQLite3();
     break;
   default:
+    console.log("Metodo Default")
     const { default: ProductosDaoMem } = await import(
       "./productos/ProductosDaoMemoria.js"
     );

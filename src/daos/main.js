@@ -1,6 +1,8 @@
 let productsDao;
 let cartsDao;
-
+import * as dotenv from 'dotenv'
+dotenv.config()
+console.log(dotenv.config())
 switch (process.env.PERS) {
   case "json":
     console.log("Metodo JSON")
@@ -26,6 +28,7 @@ switch (process.env.PERS) {
     cartsDao = new CarritosDaoFirebase();
     break;
   case "mongodb":
+    console.log("metodo MONGO")
     const { default: ProductosDaoMongoDb } = await import(
       "./productos/ProductosDaoMongoDb.js"
     );

@@ -1,7 +1,7 @@
 export default {
     fileSystem: {
         path: './DB'
-    }
+    },
     // mongodb: {
     //     cnxStr: 'mongodb://localhost/ecommerce',
     //     options: {
@@ -11,18 +11,21 @@ export default {
     //         serverSelectionTimeoutMS: 5000,
     //     }
     // },
-    // firebase: {
-    //     "type": "service_account",
-    //     "project_id": "probando-d0b5e",
-    //     "private_key_id": "a40c76091183a33f095228f7c8b00e4f474c74f5",
-    //     "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQCi2plOAtUbKBcz\n28E4E+8voT7KcYsx/8VkTbLds25emgrOkA8oCuBo98QZvHn4DP7NpyDiLCIdXosO\nTJ9AfMzT3sQLZHII8Yfa20PozLKbGPWeGaT2WBeo6SkKEdshqTiSM+t9FbprpMPN\nRVLfDTDNziC6L6zzH2W8zmD3hBKmp+SkIldsHkd4G5Rnfzf89bWflUkaaODcicMt\nMN3PGyCnE//88feV+HOqALfA6XGviyyBQSvllnIIXOGGcFlnhP1ek/MoxPPd8rrU\nGy84Dvjat5hKcelu7V2I2pnauwDz0NuWUZBhbvNS/0y6eg1dkAq0QAoIqTBPBo2Q\n/H74aq93AgMBAAECggEAGKPypjcPf3hlaldJuO5rNk2zbnYXlY0ZlL+c3KaVgILW\nN8LcSDa9FaTHaw11du6gbwVmmFINJ1xytcsqHVvEshn2l7Ku/mNtJtQeRk8Shx0T\nrMQ8jXluuwPsTbW97i3ofVaVvutWtYrMhXaDv3QDemBB22nzRSXvAs5HJaw6FjT7\nFmXhmuku2kyn12iysLeE68wKOhqAhHjtMHoxxlx4JRcRo9htlmfVw5L0LTvtJ9nS\nOpO23uPRYihrF32bwJ9iIFl4CUhNYDVwNwUTrFmckNiWfMyAnzeje37QemBb2snA\nZGPNFBmsj0med/4rolDC7aoxp5yVD5qA96ocq5XQgQKBgQDbDgysBN6pkI9O7bo0\nP5sCH5yp07LU9j/JEJUw2JEZEMFpfNF+W3FZlpy4Hkei/jG59qLho6uVoRp1McVY\n+i9xvvNn+z5Qs4NQs9dtPpfzTsjuDLRkCtABL+bpEOCypf0E/bPDcI4dXr4OtJnu\nDkgJTWmnzN73I086NY0nVrj4UQKBgQC+UgGitVmYPPZ6cz/zslnVLsc1RLrvhwoC\n9N21aqg46KWlz+Yxl1QVVzgDWRpcsPZ2qXHzchLr8huP9dmytl3WzyP+QACHEFbT\ncm6lvuENvptYauTuuymUca1DS1QalsvN+Dyw9T9pZSxWP8rBbVJnQ5ghiqDmI5G4\ntbbl4+2BRwKBgGo5MePoqKDJPPUlSnozrdMlyS6BPeMPVncF15LMMfBZs7CXmm8P\noLO02WJfLJXZdfubofiRCY+Rg+b4r54qE/+wfRAbQWiY5ECqNPkAtWaC+eSVvJQW\nui8ZL3wtdwiqfTuCWz2WwxNy8e7nnQ1XV49LPsTkD+r/8FdlyIEfCKtBAoGBALfm\nScpM7bva/Fep0VvLNF54Cul/9hnJJHVi4nCQFOiYdKdZ0haNISRV2LvzdzOlkyFp\n7b/MtFfk45kheC/lY5tTIHZmpZvcv+klI6FoZdKAIV84OuorU6wqg78IpMXkfB4U\nBaD/+TwAFO1qSqLI3d0GRZPzfjGioQYYIBjXOwG1AoGAP7ckkwFdwbMjB0JVp+uq\nJe4UgGwGp1nzX9Gaolm0Fseoz9/dLkmjRncvu08B1MnAfY7z+u0eBS4QVqn4vQyP\nL/Z4xWjWV2nR09N8+ij5snviJOPlyRwXF4pwMjjO4ihLLD9EVnY/+xVlJgcFp1mq\nQIbJvMtCBqv7rI+EYWYllpo=\n-----END PRIVATE KEY-----\n",
-    //     "client_email": "firebase-adminsdk-bx8rj@probando-d0b5e.iam.gserviceaccount.com",
-    //     "client_id": "102649946009022189922",
-    //     "auth_uri": "https://accounts.google.com/o/oauth2/auth",
-    //     "token_uri": "https://oauth2.googleapis.com/token",
-    //     "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
-    //     "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/firebase-adminsdk-bx8rj%40probando-d0b5e.iam.gserviceaccount.com"
-    // },
+    firebase: {
+        "type": "service_account",
+        "project_id": "eccomerce-backend",
+        "private_key_id": "e8b228759043ae547be33fb6b68530320933e36b",
+        "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQCqDeAiY8mIsnlh\nn1izWjT5HtMxgNx8o9zuS4MqiBxuk7vmF1k1kAH7SwRk1xb1nLvANgwNpKcqcpm5\nvWspZzJz8Fk65TTBkrX0zcpcezGuu0Bpi1h5qJ9BNBE4/zdCQQjtHAlYZTSoON4w\nidjBKW8AQa9wvCbFDek60vJhP/IzOlqvyZsES8Ut4V5Pmyq28YSz51MyZlI1EeHW\nlyDGrafJtPHyj/bjm5qMlZM2RIwIMZ2hxK/Y3P9kb9p7z+ecCH3bRFvxOPl/Od56\npRnmgVQu/WIb+Olm3mWupkwatUYJq04wCSoTZfmKU83ws4x10fliDeU2ifEfJVXj\nskbRLoR1AgMBAAECggEAId2kisS7oHUGlknxFLq8vPYGEiA7CLlraKtyIji8DMtw\nCpkQw4l704szg0+Qe3Zsr5Ez4k2tmtb6xVIzMqoiEpPFeWSnFnu8r9WB3NwN32Hc\nKIi/JG9P0+DmIyc0XoXsHKhONiPlkjDNEvaIy6MQP4lVQoq939Vu4q+a5IIjHk9H\n8GekjV6E52ahtzFmkaXTUQtxARhUAWwTk98RLKOzA6XO1VV9RmVQT/r2wpJSAo+K\nmratwBrWJbFkZ7V8t03rkhJZYKcNqIt/yXSVkggZrvsgVEL/1a/O5hsRESmxpDXn\n79flVCEzwApKy3oYEvLbyLz0w2qnF6A2kRlMmJ/UAQKBgQDfJKvJzCcQC5SHcER1\nHmBZVoTpJNeE3LSzwtIW5O035jxumu6/cPZTvLSoa6CrGGpsHvEQ3LZUktSiTtfc\n8wGwkSdBK2kGO1WQxUeWNwKyiAQ+Gdio3FYDBqjkIGFSwR05IYtamxehmg9xdIjV\nYpG3EisHYCF/8eSSTgWZIljOdQKBgQDDGAazyZCNl67cbUIFR4MEpeoHV30RjM/T\nzVIssZcsuy0Q29/4rG2xzc3HRNFkiwvZ4LdY5/7OMXFID77Jv/QQB0JGdtXgqKij\npBPZ6zpCskPgQvwrTf/RKCH76BxTv/pDgkecpePHnAqFYtExbiV7BBc1RanlVrtc\nfnaY35QeAQKBgHnYgl2ctq/SQvZ53Ue+oInn7oeIcI7CHYITHbkWpFnjxJf4zemH\ne1paLqPQsVj76hDEDIpSmtUvoCBIwSKLJx8NA8xYMe8PMzfsIZzqyPRHxVlLr7z1\nI5pfZpW7AKm5fYWWxYtiKNM7VrdzFMzAGCVJLGnImkJNCazCIdhuouOJAoGBAL22\n9X2LuwgVwrMThCoCGoRAm028ZCDW35rFhO11XN7gvbgxOKFne9x1l2/5me290S50\neZb5My1row9CUHN8OGgFxwsisGUhXayT98HoHuWQ2LSSLwoldWj9L975HeLLQyC2\n5dCM+O247fo719XLmKMBnVfugIJGTzhougd7E1wBAoGBALP0BmqW7HvlaIliXPyr\nn3LEju5BD4UGh4qmOHD681JzzeG8VeN1SzgH6qYsaTSB0bNnAv4uo2L98WGFk6fL\nyBvPT271B8bOA/zwHwlSXia9xv9TBJH7oaLyvLh+4YlrEoaQ/5aQdoPWjDSdKslx\nhVXyoS++QZEskYiIlxMZ05mf\n-----END PRIVATE KEY-----\n",
+        "client_email": "firebase-adminsdk-rtq3b@eccomerce-backend.iam.gserviceaccount.com",
+        "client_id": "102615209886251285840",
+        "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+        "token_uri": "https://oauth2.googleapis.com/token",
+        "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+        "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/firebase-adminsdk-rtq3b%40eccomerce-backend.iam.gserviceaccount.com"
+      }
+      
+
+
     // sqlite3: {
     //     client: 'sqlite3',
     //     connection: {

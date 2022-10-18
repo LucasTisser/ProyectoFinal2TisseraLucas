@@ -1,4 +1,6 @@
-const { writeFile, readFile } = require("fs").promises;
+// import {promises as fs} from "fs"
+
+import {promises as fs } from "fs";
 import config from "../config.js";
 
 class ContainerArchivo {
@@ -9,8 +11,9 @@ class ContainerArchivo {
 
   async save(obj) {
     try {
-        const objs = await this.read();
+        const objs = await this.readAll();
 
+        let newId
         if (objs.length == 0) {
             newId = 1
         } else {
@@ -21,7 +24,7 @@ class ContainerArchivo {
     objs.push(newObj)
 
       const stringData = JSON.stringify(objs, null, 2);
-      await writeFile(this.ruta, stringData);
+      await fs.writeFile(this.ruta, stringData);
 
       return newObj;
     } catch (error) {
@@ -31,9 +34,8 @@ class ContainerArchivo {
 
   async readAll() {
     try {
-      const stringData = await readFile(this.ruta, "utf-8");
-      console.log(stringData)
-      const parsedData = JSON.parse(stringData);
+      const objs = await fs.readFile(this.ruta, "utf-8");
+      const parsedData = JSON.parse(objs);
       return parsedData;
     } catch (err) {
       const dataBase = {
@@ -49,23 +51,20 @@ class ContainerArchivo {
   async read(id){
     const objs = await this.readAll()
     const wasfinded = objs.find(obj => obj.id == id)
-
-    wasfinded ? 
-    wasfinded:
-    "No se ha encontrado"
+    return wasfinded
   }
 
-  async update(elem) {
+  async update(newData,id) {
     const objs = await this.readAll();
-    const index = objs.findIndex(obj => obj.id === elem.id);
+    const index = objs.findIndex(obj => obj.id == id);
 
     if (index == -1) {
       throw new Error(`Error al actualizar: no se encontro el id ${id}`)
     } else {
-       objs[index] = elem
+       objs[index] = newData
      try{
         const stringData = JSON.stringify(objs, null, 2)
-        await writeFile(this.ruta, stringData)
+        await fs.writeFile(this.ruta, stringData)
      } catch (err){
         throw new Error(`Error al actualizar: ${err} `)
      }
@@ -74,7 +73,7 @@ class ContainerArchivo {
 
   async delete(id) {
     const objs = await this.readAll();
-    const index = objs.findIndex((product) => product.id === id);
+    const index = objs.findIndex((product) => product.id == id);
 
     if (index == -1) {
         throw new Error(`Error al borrar: no se encontro el id ${id}`)
@@ -82,7 +81,7 @@ class ContainerArchivo {
         objs.splice(index, 1);
         try{
             const stringData = JSON.stringify(objs,null,2)
-            await writeFile( this.ruta, stringData )
+            await fs.writeFile( this.ruta, stringData )
         } catch (err) {
             throw new Error(`Error al borrar: ${err}`)
         }
@@ -91,7 +90,7 @@ class ContainerArchivo {
 
   async deleteAll() {
     try {
-        await writeFile(this.ruta, JSON.stringify([], null, 2))
+        await fs.writeFile(this.ruta, JSON.stringify([], null, 2))
     } catch (error) {
         throw new Error(`Error al borrar todo: ${error}`)
     }

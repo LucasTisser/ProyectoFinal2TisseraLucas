@@ -1,13 +1,19 @@
 const cartsRouter = Router();
 import { Router } from "express"
-import { cartsDao as cartsApi} from "../daos/main.js"
+import { cartsDao as cartsApi, productsDao as productsApi} from "../daos/main.js"
+
+
+// Lista los carritos actualuales
+cartsRouter.get('/', async (req, res) => {
+  res.json((await cartsApi.readAll()).map(c => c.id))
+})
 
 // Crea un carrito y devuelve su id
 cartsRouter.post("/", async (req, res) => {
   try {
-    const wasCreated = await myCartsModel.createNewCart();
-    if (wasCreated) {
-      res.send(wasCreated);
+    const CartCreated = await cartsApi.save();
+    if (CartCreated) {
+      res.json(CartCreated);
     } else {
       res.send("No se logro crear el carrito");
     }
@@ -20,14 +26,8 @@ cartsRouter.post("/", async (req, res) => {
 cartsRouter.delete("/:id", async (req, res) => {
   const id = Number(req.params.id);
   try {
-    const carts = await myCartsModel.readCarts();
-    const { cartsList } = carts;
-    if (cartsList.length >= id) {
-      await myCartsModel.deleteCartById(id);
-      res.send("Carrito Eliminado");
-    } else {
-      res.send("No se encontro el carrito a eliminar");
-    }
+    const cartDeleted = await cartsApi.delete(id);
+    res.json(cartDeleted)
   } catch (err) {
     res.status(400).send("bad request" + err);
   }
@@ -37,11 +37,8 @@ cartsRouter.delete("/:id", async (req, res) => {
 cartsRouter.get("/:id/productos", async (req, res) => {
   const { id } = req.params;
   try {
-    const cart = await myCartsModel.getCartById(id);
-    const { products } = cart;
-    products.length > 0
-      ? res.send(products)
-      : res.send("Su carrito esta vacio");
+    const cart = await cartsApi.read(id);
+    res.json(cart.productos)
   } catch (err) {
     res.status(400).send("Bad Request");
   }
@@ -50,16 +47,14 @@ cartsRouter.get("/:id/productos", async (req, res) => {
 // Para incorporar productos al carrito por su id de producto
 cartsRouter.post("/:id/productos", async (req, res) => {
   try {
-    const cartId = Number(req.params.id);
+    const cartId =req.params.id;
+    const cart = await cartsApi.read(cartId)
     const { productId } = req.body;
-    if (cartId && productId) {
-      const product = await myProductsModel.getProducts();
-      if (productId < product.length) {
-        const wasAdded = await myCartsModel.addProductToCart(cartId, productId);
-        res.send(wasAdded);
-      } else {
-        res.status(400).send("No se ha encontrado el producto");
-      }
+    const product = await productsApi.read(productId)
+    if (cart && product) {
+      cart.productos.push(product)
+      await cartsApi.update(cart,cartId)
+      res.end()
     } else {
       res.status(400).send("Faltan datos para completar la operacion");
     }
@@ -69,21 +64,18 @@ cartsRouter.post("/:id/productos", async (req, res) => {
 });
 
 // Eliminar un producto del carrito por su id de carrito y de producto
-cartsRouter.delete("/:id/productos/:id_prod", async (req, res) => {
+cartsRouter.delete("/:id/productos/:idProd", async (req, res) => {
   try {
-    const cartId = Number(req.params.id);
-    const productId = Number(req.params.id_prod);
-    if (cartId && productId) {
-      const wasDeleted = await myCartsModel.deleteProductToCart(
-        cartId,
-        productId
-      );
-      res.send(wasDeleted);
-    } else {
-      res.status(400).send("Faltan datos para completar la operacion");
+    const cartId =req.params.id;
+    const cart = await cartsApi.read(cartId)
+    const index = cart.productos.findIndex(p => p.id == req.params.idProd)
+    if(index != -1){
+      cart.productos.splice(index,1)
+      await cartsApi.update(cart,cartId)
     }
+    res.end()
   } catch (err) {
-    res.status(400).send("Bad request" + err);
+    res.status(400).send("bad request" + err);
   }
 });
 

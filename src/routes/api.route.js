@@ -5,7 +5,7 @@ const apiRouter = Router();
 
 // Rutas alojadas en routers
 apiRouter.use("/productos", productsRouter);
-apiRouter.use("/carrito", cartsRouter);
+apiRouter.use("/carritos", cartsRouter);
 
 // apiRouter
 export default apiRouter

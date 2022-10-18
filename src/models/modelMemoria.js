@@ -36,10 +36,8 @@ class ContainerMem {
     }
   }
 
-  async update(elem,id) {
-    const idN = Number(id)
-    const index = this.elem.findIndex(obj => obj.id === idN );
-
+  async update(newData,id) {
+    const index = this.elem.findIndex(obj => obj.id == id );
     if (index == -1) {
       throw new Error(`Error al actualizar: no se encontro el id ${id}`)
     } else {
@@ -49,13 +47,13 @@ class ContainerMem {
       // ej del problema: si quiero cambiar solo nombre,
       // tengo que colocar toda la informacion del producto
       // para que se actualize nombre y no se elimine los demas keys
-      this.elem[index] = {...elem, id:idN}
-       return {...elem, id:idN}
+      this.elem[index] = newData
+      return newData
     }
   }
 
   async delete(id) {
-    const index = this.elem.findIndex((product) => product.id === id);
+    const index = this.elem.findIndex((elem) => elem.id == id);
 
     if (index == -1) {
         throw new Error(`Error al borrar: no se encontro el id ${id}`)

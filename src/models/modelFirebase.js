@@ -55,11 +55,9 @@ class ContainerFirebase{
         }
       }
     
-      async update(newData) {
-          // mejorar update entero
+      async update(newData,id) {
          try{
-            console.log(newData.productId)
-            const actualizado = await this.coleccion.doc(newData.id).set(newData)
+            const actualizado = await this.coleccion.doc(id).set(newData)
             return actualizado
          } catch (err){
             throw new Error(`Error al actualizar: ${err} `)

@@ -2,15 +2,14 @@ export default {
     fileSystem: {
         path: './DB'
     },
-    // mongodb: {
-    //     cnxStr: 'mongodb://localhost/ecommerce',
-    //     options: {
-    //         useNewUrlParser: true,
-    //         useUnifiedTopology: true,
-    //         useCreateIndex: true,
-    //         serverSelectionTimeoutMS: 5000,
-    //     }
-    // },
+    mongodb: {
+        cnxStr: 'mongodb+srv://LucasTissera:<LucasTissera>@cluster0.arswfmd.mongodb.net/test',
+        options: {
+            useNewUrlParser: true,
+            useUnifiedTopology: true,
+            serverSelectionTimeoutMS: 5000,
+        }
+    },
     firebase: {
         "type": "service_account",
         "project_id": "eccomerce-backend",

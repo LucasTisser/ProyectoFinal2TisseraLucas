@@ -24,7 +24,7 @@ cartsRouter.post("/", async (req, res) => {
 
 // Vacia un carrito y lo elimina
 cartsRouter.delete("/:id", async (req, res) => {
-  const id = Number(req.params.id);
+  const id = req.params.id;
   try {
     const cartDeleted = await cartsApi.delete(id);
     res.json(cartDeleted)

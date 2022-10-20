@@ -12,11 +12,12 @@ class ContainerMongoDb {
 
     async save(newElem) {
         try {
-            let doc = await this.coleccion.create(newElem)
-            doc = asPOJO(doc)
-            renameField(doc, '_id', 'id')
-            removeField(doc, '__v')
-            return doc
+          let doc = await this.coleccion.create(newElem)
+          doc = asPOJO(doc)
+          renameField(doc, '_id', 'id')
+          removeField(doc, '__v')
+          console.log(doc)
+          return doc
         } catch (error) {
           throw new Error(`Error al guardar: ${error}`);
         }
@@ -53,8 +54,10 @@ class ContainerMongoDb {
     
       async update(newData,id) {
          try{
+          if (newData.id){
             renameField(newData, 'id', '_id')
-            const { n, nModified } = await this.coleccion.replaceOne({ '_id': id})
+          }
+            const { n, nModified } = await this.coleccion.replaceOne({ '_id': id},newData)
          if (n == 0 || nModified == 0) {
             throw new Error('Error al actualizar: no encontrado')
          } else {
@@ -69,7 +72,7 @@ class ContainerMongoDb {
     
       async delete(id) {
             try{
-                const { n, nDeleted } = await this.coleccion.deleteOne({ '_id': id})
+                const { n, nDeleted } = await this.coleccion.deleteOne({ 'id': id})
                 if (n == 0 || nDeleted == 0) {
                     throw new Error('Error al borrar: no encontrado')
                 }

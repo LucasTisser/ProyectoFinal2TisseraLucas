@@ -3,7 +3,7 @@ export default {
         path: './DB'
     },
     mongodb: {
-        cnxStr: 'mongodb+srv://LucasTissera:<LucasTissera>@cluster0.arswfmd.mongodb.net/test',
+        cnxStr: 'mongodb+srv://LucasTissera:LucasTissera@cluster0.arswfmd.mongodb.net/?retryWrites=true&w=majority',
         options: {
             useNewUrlParser: true,
             useUnifiedTopology: true,

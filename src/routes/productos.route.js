@@ -50,10 +50,19 @@ productsRouter.delete("/:id", authValidator, async (req, res) => {
   const id = req.params.id;
   try {
       await productsApi.delete(id);
-      res.json("Producto Eliminado");
-  } catch {
-    res.status(400).send("Bad Request");
+      res.json("Producto eliminado");
+  } catch (err) {
+    res.status(400).send(`Bad Request : ${err}`);
   }
+  // elimina todos los productos
 });
+productsRouter.delete("/",authValidator, async (req,res) => {
+  try{
+    const deleted = await productsApi.deleteAll()
+    res.json(deleted)
+  } catch (err) {
+    res.status(400).send(`No se ha logrado borrar todo: ${err})`)
+  }
+})
 
 export default productsRouter;

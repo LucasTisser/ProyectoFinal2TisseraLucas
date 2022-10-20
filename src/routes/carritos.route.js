@@ -68,7 +68,13 @@ cartsRouter.delete("/:id/productos/:idProd", async (req, res) => {
   try {
     const cartId =req.params.id;
     const cart = await cartsApi.read(cartId)
-    const index = cart.productos.findIndex(p => p.id == req.params.idProd)
+    console.log(cart.productos)
+    const index = cart.productos.findIndex(p=> {
+      if(p._id) {
+       return p._id == req.params.idProd
+      }
+      return p.id == req.params.idProd
+    })
     if(index != -1){
       cart.productos.splice(index,1)
       await cartsApi.update(cart,cartId)

@@ -8,4 +8,4 @@ const authValidator = (req, res, next) => {
   }
 };
 
-export default authValidator
+export default authValidator;

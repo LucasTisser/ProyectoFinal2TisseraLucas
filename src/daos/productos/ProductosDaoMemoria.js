@@ -1,7 +1,5 @@
-import ContainerMem from "../../models/modelMemoria.js"
+import ContainerMem from "../../models/modelMemoria.js";
 
-class ProductosDaoMem extends ContainerMem {
-    
-}
+class ProductosDaoMem extends ContainerMem {}
 
-export default ProductosDaoMem
+export default ProductosDaoMem;

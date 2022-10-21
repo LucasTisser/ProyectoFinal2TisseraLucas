@@ -6,7 +6,6 @@ console.log(dotenv.config());
 
 switch (process.env.PERS) {
   case "json":
-    console.log("Metodo JSON");
     const { default: ProductosDaoArchivo } = await import(
       "./productos/ProductosDaoArchivo.js"
     );
@@ -18,7 +17,6 @@ switch (process.env.PERS) {
     cartsDao = new CarritosDaoArchivo();
     break;
   case "firebase":
-    console.log("firebase")
     const { default: ProductosDaoFirebase } = await import(
       "./productos/ProductosDaoFirebase.js"
     );
@@ -30,7 +28,6 @@ switch (process.env.PERS) {
     cartsDao = new CarritosDaoFirebase();
     break;
   case "mongodb":
-    console.log("metodo MONGO");
     const { default: ProductosDaoMongoDb } = await import(
       "./productos/ProductosDaoMongoDb.js"
     );
@@ -64,7 +61,6 @@ switch (process.env.PERS) {
     cartsDao = new CarritosDaoSQLite3();
     break;
   default:
-    console.log("Metodo Default");
     const { default: ProductosDaoMem } = await import(
       "./productos/ProductosDaoMemoria.js"
     );

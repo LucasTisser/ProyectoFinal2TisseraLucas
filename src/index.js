@@ -1,5 +1,5 @@
 // Configuracion inicial en express de node.js
-import express from "express"
+import express from "express";
 import apiRouter from "./routes/api.route.js";
 
 const app = express();

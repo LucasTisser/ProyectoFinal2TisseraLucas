@@ -1,20 +1,19 @@
 class ContainerMem {
-
   constructor() {
     this.elem = [];
   }
 
   async save(elem) {
     try {
-      let newId
-        if (this.elem.length == 0) {
-            newId = 1
-        } else {
-            newId = this.elem[this.elem.length -1].id + 1
-        }
+      let newId;
+      if (this.elem.length == 0) {
+        newId = 1;
+      } else {
+        newId = this.elem[this.elem.length - 1].id + 1;
+      }
 
-    const newElem = {...elem, id: newId}
-    this.elem.push(newElem)
+      const newElem = { ...elem, id: newId };
+      this.elem.push(newElem);
 
       return newElem;
     } catch (error) {
@@ -23,23 +22,23 @@ class ContainerMem {
   }
 
   async readAll() {
-    return [...this.elem]
+    return [...this.elem];
   }
 
-  async read(id){
-    const finded = this.elem.find(obj => obj.id == id)
+  async read(id) {
+    const finded = this.elem.find((obj) => obj.id == id);
 
-    if (!finded){
-        throw new Error(`Error al listar: elemento no encontrado`)
+    if (!finded) {
+      throw new Error(`Error al listar: elemento no encontrado`);
     } else {
-        return finded;
+      return finded;
     }
   }
 
-  async update(newData,id) {
-    const index = this.elem.findIndex(obj => obj.id == id );
+  async update(newData, id) {
+    const index = this.elem.findIndex((obj) => obj.id == id);
     if (index == -1) {
-      throw new Error(`Error al actualizar: no se encontro el id ${id}`)
+      throw new Error(`Error al actualizar: no se encontro el id ${id}`);
     } else {
       // Problema a solucionar
       // Cuando se actualiza la informacion, se pierde toda key
@@ -47,8 +46,9 @@ class ContainerMem {
       // ej del problema: si quiero cambiar solo nombre,
       // tengo que colocar toda la informacion del producto
       // para que se actualize nombre y no se elimine los demas keys
-      this.elem[index] = newData
-      return newData
+      const as = (this.elem[index] = newData);
+      const updated = { ...as, id: id };
+      return updated;
     }
   }
 
@@ -56,15 +56,15 @@ class ContainerMem {
     const index = this.elem.findIndex((elem) => elem.id == id);
 
     if (index == -1) {
-        throw new Error(`Error al borrar: no se encontro el id ${id}`)
-    }else {
-        return this.elem.splice(index, 1);
+      throw new Error(`Error al borrar: no se encontro el id ${id}`);
+    } else {
+      return this.elem.splice(index, 1);
     }
   }
 
   async deleteAll() {
-    this.elem = []
-}
+    this.elem = [];
+  }
 }
 
-export default ContainerMem
+export default ContainerMem;
